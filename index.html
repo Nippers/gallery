@@ -2,11 +2,14 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aframe-extras@4.1.2/index.min.js"></script>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
   </head>
   <body>
     <a-scene>
+
       <a-assets>
+        <a-mixin id="checkpoint"></a-mixin>
+        <a-mixin id="checkpoint-hovered" color="blue"></a-mixin>
         <img id="floor" src="https://3.bp.blogspot.com/-sP5XqI9rpF4/WxxcIkp4i9I/AAAAAAAAH8U/oo9E1M8q61Us6B7FGIJ4uNdjtuW7vwMBwCLcBGAs/s1600/parquet.jpg">
         <img id="cement" src="https://3.bp.blogspot.com/-5ybvizjFy8o/WxxeXsBhW2I/AAAAAAAAH8s/UUTgRZrpnYkJCHsXqxz-iZ39MyelfdSigCLcBGAs/s1600/cement.jpg">
         <img id="wall" src="https://3.bp.blogspot.com/-tlf6aH6nXdE/Wxx3MZKBRJI/AAAAAAAAH_E/P-zKGllVq0cd2tpP1Wxx5MRmbkpQ7cDZACLcBGAs/s1600/wall3.png">
@@ -45,12 +48,42 @@
 
       </a-assets>
 
-      <!--<a-entity id="rig" movement-controls="constrainToNavMesh: true" position="0 0 0">
-        <a-entity camera position="0 1.6 0" look-controls="pointerLockEnabled: false"></a-entity>
-      </a-entity>-->
+      <!-- Player -->
+            <a-entity id="rig" movement-controls="controls: checkpoint" checkpoint-controls="mode: animate">
+              <a-entity camera
+                        position="0 1.6 0"
+                        look-controls="pointerLockEnabled: true">
+                <a-entity cursor
+                          position="0 0 -1"
+                          geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03;"
+                          material="color: #CCC; shader: flat;"></a-entity>
+              </a-entity>
+            </a-entity>
+
+            <!-- Checkpoints -->
+            <a-entity position="1 0 1">
+              <!--<a-cylinder checkpoint radius=".5" height="0.1" position="0 0 -5.2" color="red"></a-cylinder>-->
+              <a-cylinder checkpoint radius=".5" height="0.1" position="-1 -.2 -1" color="black"></a-cylinder>
+              <a-cylinder checkpoint radius=".5" height="0.1" position="2 -.2 .4" color="red"></a-cylinder>
+              <a-cylinder checkpoint radius=".5" height="0.1" position="-4 -.2 -.2" color="orange"></a-cylinder>
+              <a-cylinder checkpoint radius=".5" height="0.1" position="-4 -.2 3" color="yellow"></a-cylinder>
+              <a-cylinder checkpoint radius=".5" height="0.1" position="-4 -.2 9" color="lime"></a-cylinder>
+              <a-cylinder checkpoint radius=".5" height="0.1" position="-.1 -.2 3.6" color="green"></a-cylinder>
+              <a-cylinder checkpoint radius=".5" height="0.1" position="9 -.2 3.6" color="teal"></a-cylinder>
+              <a-cylinder checkpoint radius=".5" height="0.1" position="12 -.2 3.6" color="lightblue"></a-cylinder>
+              <a-cylinder checkpoint radius=".5" height="0.1" position="11.5 -.2 -1" color="blue"></a-cylinder>
+              <a-cylinder checkpoint radius=".5" height="0.1" position="7 -.2 0" color="purple"></a-cylinder>
+              <a-cylinder checkpoint radius=".5" height="0.1" position="12 -.2 -6" color="magenta"></a-cylinder>
+              <a-cylinder checkpoint radius=".5" height="0.1" position="8.5 -.2 -6" color="pink"></a-cylinder>
+              <a-cylinder checkpoint radius=".5" height="0.1" position="5.5 -.2 -6" color="gold"></a-cylinder>
+              <a-cylinder checkpoint radius=".5" height="0.1" position="2.5 -.2 -6" color="brown"></a-cylinder>
+              <a-cylinder checkpoint radius=".5" height="0.1" position="-5 -.2 -5.5" color="navy"></a-cylinder>
+              <a-cylinder checkpoint radius=".5" height="0.1" position="-5 -.2 -25" color="lime"></a-cylinder>
+
+          </a-entity>
 
       <a-text position="-1 2 -1" width="4.5" value="Roadside Attraction:" color="black"></a-text>
-      <a-text position="-1 1.75 -1" width="4.5" value="Photography by John Uhr" color="black"></a-text>
+      <a-text position="-1 1.75 -1" width="4.5" value="Photography" color="black"></a-text>
       <a-text position="-1 1.4 -1" width="2" value="A collection of quirky images from travels around the southwestern U.S." color="black"></a-text>
       <a-text position="-1 1.1 -1" width="2" value="Virtual reality gallery by Julia Uhr" color="black"></a-text>
 
@@ -129,6 +162,11 @@
 
 
       <a-sky color="black"></a-sky><!--"#ccfcfb"-->
+
+
+
+
+
     </a-scene>
   </body>
 </html>
